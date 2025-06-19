@@ -4,8 +4,19 @@ from mcp_instance import mcp
 mcp.tool()
 def detect_spikes(threshold: int = 80):
     """
-    Detects if CPU or Memory usage exceeds the specified threshold (%).
-    Returns warnings if limits are crossed.
+    Detect CPU or memory usage spikes that exceed a specified percentage threshold.
+
+    Args:
+        threshold (int, optional): The usage percentage threshold (0–100) above which a warning is triggered.
+                                   Defaults to 80, but it can be adjusted.
+
+    Returns:
+        dict: A dictionary containing:
+            - cpu_percent (float): Current CPU usage in percentage.
+            - memory_percent (float): Current memory usage in percentage.
+            - threshold (int): The threshold value used for detection.
+            - warnings (list of str): List of warning messages if any usage exceeds the threshold.
+                                      Returns ['System usage normal.'] if no issues are found.
     """
     cpu_percent = psutil.cpu_percent(interval=1)
     mem = psutil.virtual_memory()
@@ -27,10 +38,17 @@ def detect_spikes(threshold: int = 80):
 @mcp.tool()
 def analyze_process_anomalies():
     """
-    Analyzes processes for suspicious patterns, such as:
-    - Very high memory and 0% CPU (possible leak or hung process)
+    Analyze currently running processes for common anomalies, including:
+
+    - High memory usage (>1000 MB) combined with near-zero CPU usage (possible memory leak or stalled process)
     - Zombie or defunct processes
-    - Unusually high memory usage (>1GB)
+
+    Returns:
+        list: A list of anomaly reports, each as a dictionary with:
+            - pid (int): Process ID.
+            - name (str): Process name.
+            - issue (str): Description of the detected anomaly.
+        If no anomalies are found, returns a single-item list: ['No anomalies detected.']
     """
     anomalies = []
     for proc in psutil.process_iter(['pid', 'name', 'cpu_percent', 'memory_info', 'status']):

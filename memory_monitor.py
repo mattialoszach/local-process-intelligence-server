@@ -4,7 +4,21 @@ from mcp_instance import mcp
 
 @mcp.tool()
 def get_memory_usage():
-    """Returns memory & swap usage (in GB)."""
+    """
+    Retrieve current RAM and swap memory usage.
+
+    Returns:
+        dict: A dictionary containing:
+            - RAM (dict):
+                - total_gb (float): Total physical memory in GB.
+                - used_gb (float): Used memory in GB.
+                - free_gb (float): Available memory in GB.
+                - percent (float): Percentage of RAM used.
+            - SWAP (dict):
+                - total_gb (float): Total swap space in GB.
+                - used_gb (float): Used swap space in GB.
+                - percent (float): Percentage of swap space used.
+    """
     mem = psutil.virtual_memory()
     swap = psutil.swap_memory()
     return {
@@ -23,7 +37,16 @@ def get_memory_usage():
 
 @mcp.tool()
 def get_disk_usage():
-    """Returns disk usage of the root filesystem."""
+    """
+    Retrieve disk usage statistics of the root ("/") filesystem.
+
+    Returns:
+        dict: A dictionary containing:
+            - total_gb (float): Total disk capacity in GB.
+            - used_gb (float): Used disk space in GB.
+            - free_gb (float): Free disk space in GB.
+            - percent_used (float): Percentage of disk space used.
+    """
     usage = shutil.disk_usage("/")
     return {
         "total_gb": round(usage.total / 1e9, 2),
