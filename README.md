@@ -1,6 +1,8 @@
 # 🧠 Local Process Intelligence MCP Server
 This is a local, intelligent monitoring server built for the [Model Context Protocol (MCP)](https://docs.anthropic.com/en/docs/mcp). It provides deep insight into your system and running processes, enabling a local LLM agent to analyze the machine’s state, perform diagnostics, suggest optimizations, and offer real-time solutions.
 
+<img src="img/img1.png" alt="Screenshot" width="600">
+
 > [!NOTE]
 > ### ⚙️ Compatibility
 > This project was tested on the latest versions of **macOS**. While most features work reliably on this version, compatibility with other operating systems (Linux/Windows) is not guaranteed.
@@ -21,6 +23,9 @@ This project provides tools to:
 - 🧠 Deliver actionable warnings and insights
 
 This allows a local agent to not only observe, but also understand what’s happening on your machine — and provide real-time, specific solutions based on the actual system state.
+
+<img src="img/img2.png" alt="Screenshot" width="600">
+<img src="img/img3.png" alt="Screenshot" width="600">
 
 ## 🚀 Quick Start
 ### 📦 Installation
