@@ -5,7 +5,7 @@ This is a local, intelligent monitoring server built for the [Model Context Prot
 
 > [!NOTE]
 > ### ⚙️ Compatibility
-> This project was tested on the latest versions of **macOS**. While most features work reliably on this version, compatibility with other operating systems (Linux/Windows) is not guaranteed.
+> This project was tested on the latest versions of **macOS**. While most features work reliably on this version, compatibility with other operating systems (Linux/Windows) is not always guaranteed.
 
 ## What It Can Do
 This project provides tools to:
