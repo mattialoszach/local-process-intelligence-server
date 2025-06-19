@@ -2,6 +2,7 @@ import os
 import platform
 import psutil
 import shutil
+from datetime import datetime, timedelta 
 from mcp_instance import mcp
 from cpu_monitor import get_cpu_usage
 from memory_monitor import get_memory_usage, get_disk_usage
@@ -22,14 +23,14 @@ def get_system_summary():
             - disk_total_gb (float): Total disk capacity in gigabytes (root partition).
             - boot_time (float): System boot time as a Unix timestamp.
     """
+    boot_timestamp = psutil.boot_time()
+    boot_time = datetime.fromtimestamp(boot_timestamp)
+
     return {
         "os": platform.platform(),
         "cpu": platform.processor(),
         "cpu_count": os.cpu_count(),
         "ram_total_gb": round(psutil.virtual_memory().total / (2**30), 2),
         "disk_total_gb": round(shutil.disk_usage("/").total / 1e9, 2),
-        "boot_time": psutil.boot_time()
+        "boot_time": boot_time.strftime("%Y-%m-%d %H:%M:%S")
     }
-
-if __name__ == "__main__":
-    print(get_system_summary())
